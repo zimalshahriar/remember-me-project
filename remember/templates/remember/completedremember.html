@@ -1,0 +1,23 @@
+{% extends 'remember/base.html' %}
+
+{% block content %}
+<br>
+<div class="row justify-content-center mt-5">
+    <div class="col-md-8">
+        <h4 style="font-size:70px;color:DarkSlateGray;">You completed us 👍🏻</h4>
+    </div>
+</div>
+<br>
+<br>
+<div class="row justify-content-center mt-5">
+    <div class="col-md-10">
+        <div class="list-group">
+            {% for remember in remembers %}
+            <a href="{% url 'viewremember' remember.id %}"
+               class="list-group-item list-group-item-action{% if remember.important %} list-group-item-success{% endif %}"><b>
+                {{ remember.title }}</b> - Completed {{ remember.datecompleted|date:'H:i j M Y' }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'remember/base.html' %}
+
+{% block content %}
+
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-4">
+            <h2 style="font-size:100px;color:DimGray;" class="font-weight-bold text-center">Login</h2>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-5">
+            {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endif %}
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" class="form-control" id="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" class="form-control" id="password">
+                </div>
+                <div class="row justify-content-center mt-4">
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-outline-info">
+                            <h5 class="font-weight-bold text-center" style="color:DarkSlateGray;">Login</h5>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <hr>
+            <div class="text-center">
+                Need an account? <a href="{% url 'signupuser' %}"><h5>Sign Up here</h5></a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

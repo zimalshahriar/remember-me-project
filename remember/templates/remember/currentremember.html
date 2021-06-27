@@ -1,0 +1,40 @@
+{% extends 'remember/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-10">
+        {% if remembers %}
+        <h1 style="color:DarkSlateGray;" class="font-weight-bold text-center">I remembered your {{ remembers.count }}
+            thing{{ remembers.count|pluralize }}</h1>
+        {% else %}
+        <h1 style="color:DarkSlateGray;" class="font-weight-bold text-center">I have nothing to remember</h1>
+        {% endif %}
+    </div>
+</div>
+<div class="row justify-content-center mt-5">
+    <div class="col-md-10">
+        {% if remembers %}
+        <div class="list-group">
+            {% for remember in remembers %}
+            <a href="{% url 'viewremember' remember.id %}"
+               class="list-group-item list-group-item-action{% if remember.important %} list-group-item-danger{% endif %}">
+                <b>
+                    {{ remember.title }}
+                </b>{% if remember.memo %} - {{ remember.memo|truncatechars:30 }}{% endif %}
+            </a>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="text-center">
+            <br>
+            <h2 style="color:DarkSlateGray;">Looks like you don't have anything to remember! Nice work.</h2>
+            <br>
+            <br>
+            <br>
+            <br>
+            <a role="button" class="btn btn-info btn-lg" href="{% url 'createremember' %}">Create me ✍🏻</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
